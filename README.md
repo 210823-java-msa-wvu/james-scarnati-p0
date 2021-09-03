@@ -7,16 +7,16 @@ User Stories:
 ---------------
 Customer Functions
 ------------------
--View cars
--view car price 
--buy car
--apply for a loan
--put car on hold
+- View cars
+- view car price 
+- buy car
+- apply for a loan
+- put car on hold
 
 Employee Functions
 ------------------
--View cars 
--veiw car prices
--sell cars(remove cars from database)
--approve loans(manager only)
--add car
+- View cars 
+- veiw car prices
+- sell cars(remove cars from database)
+- approve loans(manager only)
+- add car
