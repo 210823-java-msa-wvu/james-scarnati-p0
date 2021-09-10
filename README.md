@@ -10,8 +10,7 @@ Customer Functions
 - View cars
 - view car price 
 - buy car
-- apply for a loan
-- put car on hold
+- change passwords
 
 Employee Functions
 ------------------
