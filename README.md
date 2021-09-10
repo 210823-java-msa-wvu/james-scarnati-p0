@@ -17,6 +17,6 @@ Employee Functions
 ------------------
 - View cars 
 - veiw car prices
-- sell cars(remove cars from database)
-- approve loans(manager only)
+- sell cars
+- manage employees
 - add car
