@@ -1,5 +1,6 @@
 package dev.scarnati.service;
 
+
 import dev.scarnati.model.Car;
 import dev.scarnati.model.Employee;
 import dev.scarnati.repositories.CarRepo;
@@ -13,7 +14,7 @@ public class ManagerServices {
     CrudInterface<Employee> employeeCrudInterface = new EmployeeRepo();
     CrudInterface<Car> carCrudInterface = new CarRepo();
 // adds a new employee to the database (hiring)
-    public boolean add(String firstName, String lastName, String email, String phoneNumber, String title) {
+    public boolean add(String firstName, String lastName, String email, String phoneNumber, String title)  {
         Employee e = new Employee(firstName, lastName, email, phoneNumber, title);
         return employeeCrudInterface.add(e);
 

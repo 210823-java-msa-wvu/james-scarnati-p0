@@ -1,8 +1,10 @@
 package dev.scarnati.veiws;
 
 
+import dev.scarnati.exceptions.UsernameDoesNotExistException;
 import dev.scarnati.service.UserServices;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 
 import static dev.scarnati.veiws.LoginMenu.Username;
@@ -11,7 +13,7 @@ public class MainMenu {
 
     private static UserServices userServices = new UserServices();
 
-    public static void display() {
+    public static void display() throws UsernameDoesNotExistException, SQLException {
 
         Scanner scanner = new Scanner(System.in);
         boolean running = true;

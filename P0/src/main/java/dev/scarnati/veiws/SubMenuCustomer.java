@@ -1,5 +1,6 @@
 package dev.scarnati.veiws;
 
+import dev.scarnati.exceptions.UsernameDoesNotExistException;
 import dev.scarnati.model.Accounts;
 import dev.scarnati.model.Car;
 import dev.scarnati.model.Customer;
@@ -7,6 +8,7 @@ import dev.scarnati.model.Customer;
 import dev.scarnati.service.CustomerServices;
 import dev.scarnati.service.UserServices;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 
 import static dev.scarnati.veiws.LoginMenu.Username;
@@ -15,7 +17,7 @@ public class SubMenuCustomer {
     static UserServices userServices = new UserServices();
     static CustomerServices customerServices = new CustomerServices();
 
-    public static void display() {
+    public static void display() throws UsernameDoesNotExistException, SQLException {
         Scanner scanner = new Scanner(System.in);
         boolean running = true;
 

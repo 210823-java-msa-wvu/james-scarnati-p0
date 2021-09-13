@@ -1,10 +1,13 @@
 package dev.scarnati.service;
 
+import dev.scarnati.exceptions.UsernameDoesNotExistException;
 import dev.scarnati.model.Accounts;
 import dev.scarnati.model.Customer;
 import dev.scarnati.repositories.AccountsRepo;
 import dev.scarnati.repositories.CrudInterface;
 import dev.scarnati.repositories.CustomerRepo;
+
+import java.sql.SQLException;
 
 
 //Services only used in customer menu
@@ -28,7 +31,7 @@ public class CustomerServices {
         return null;
     }
     //pulls account info from database based on username used to
-    public Accounts getByUsername(String username) {
+    public Accounts getByUsername(String username) throws UsernameDoesNotExistException, SQLException {
         Accounts a = accountsRepo.getAccountByUsername(username);
         if(a != null) {
             return a;

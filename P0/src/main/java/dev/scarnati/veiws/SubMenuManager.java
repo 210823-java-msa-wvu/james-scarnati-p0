@@ -1,17 +1,20 @@
 package dev.scarnati.veiws;
 
+
+import dev.scarnati.exceptions.UsernameDoesNotExistException;
 import dev.scarnati.model.Employee;
 import dev.scarnati.service.ManagerServices;
 import dev.scarnati.service.UserServices;
 
 
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class SubMenuManager {
     static UserServices userServices = new UserServices();
     static ManagerServices managerServices = new ManagerServices();
 
-    public static void display() {
+    public static void display() throws UsernameDoesNotExistException, SQLException {
 
         Scanner scanner = new Scanner(System.in);
         boolean running = true;
@@ -49,14 +52,14 @@ public class SubMenuManager {
                     String password = scanner.nextLine();
                     String title = "Sales";
                     boolean accountCreation = userServices.add(username, password, email);
+                    boolean employeeCreation = managerServices.add(firstName, lastName, email, phoneNumber, title);
                     if(accountCreation){
                         System.out.println("Account Created!");
-                        boolean employeeCreation = managerServices.add(firstName, lastName, email, phoneNumber, title);
                         if(employeeCreation){
                             System.out.println("Employee Created!");
                         }
                         else{
-                            System.out.println("Error creating Customer! Please try again!");
+                            System.out.println("Error creating Employee! Please try again!");
                         }
                     }
                     else{

@@ -87,7 +87,7 @@ public class EmployeeRepo implements CrudInterface<Employee> {
 
         try (Connection conn = cu.getConnection()) {
 
-            String sql = "insert into \"Dealership\".Employee values (default, ?, ?, ?, ?, ?) returning *";
+            String sql = "insert into \"Dealership\".Employee values (default, ?, ?, ?, ?, ?) ";
 
             PreparedStatement ps = conn.prepareStatement(sql);
 
@@ -137,7 +137,7 @@ public class EmployeeRepo implements CrudInterface<Employee> {
             String sql = "delete from \"Dealership\".Employee where id = ?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, id);
-            ps.execute();
+
             return ps.executeUpdate() != 0;
         } catch (SQLException e) {
             e.printStackTrace();

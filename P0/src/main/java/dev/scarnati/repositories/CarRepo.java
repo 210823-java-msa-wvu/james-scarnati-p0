@@ -163,6 +163,7 @@ public class CarRepo implements CrudInterface<Car>{
             String sql = "delete from \"Dealership\".car where id = ?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, id);
+
             return ps.executeUpdate() != 0;
 
         } catch (SQLException e) {

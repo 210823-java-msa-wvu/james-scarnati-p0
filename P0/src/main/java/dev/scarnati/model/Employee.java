@@ -88,8 +88,8 @@ public class Employee {
 
     @Override
     public String toString() {
-        return "\n" + "Employee name: " + firstName + " "
-                + lastName + "Employee title: " + title +
+        return "\n" + "Employee (" + id + ") name: " + firstName + " "
+                + lastName + ". Employee title: " + title +
                 ". Employee can be reached at: " + phoneNumber + " or "
                 + email;
     }

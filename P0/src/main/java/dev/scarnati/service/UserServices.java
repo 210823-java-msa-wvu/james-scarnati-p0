@@ -1,5 +1,6 @@
 package dev.scarnati.service;
 
+import dev.scarnati.exceptions.UsernameDoesNotExistException;
 import dev.scarnati.model.Accounts;
 import dev.scarnati.model.Car;
 import dev.scarnati.model.Customer;
@@ -19,14 +20,16 @@ public class UserServices {
     CrudInterface<Car> carCrudInterface = new CarRepo();
     AccountsRepo accountsRepo = new AccountsRepo();
 //checks login credentials
-    public boolean login(String username, String password) {
+    public boolean login(String username, String password) throws UsernameDoesNotExistException {
 
 
         Accounts a = accountsRepo.getByUsername(username);
         if (a != null) {
             return username.equals(a.getUsername()) && password.equals(a.getPassword());
         }
-        return false;
+        throw new UsernameDoesNotExistException("Account does not exist");
+
+
     }
 
     //Creates an Account in the Accounts Table

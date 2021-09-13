@@ -1,9 +1,9 @@
 package dev.scarnati.repositories;
 
+import dev.scarnati.exceptions.UsernameDoesNotExistException;
 import dev.scarnati.model.Accounts;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+
 
 import dev.scarnati.util.ConnectionUtil;
 
@@ -13,7 +13,6 @@ import java.util.List;
 
 public class AccountsRepo implements CrudInterface<Accounts> {
 
-    private static final Logger logger = LogManager.getLogger(AccountsRepo.class);
     ConnectionUtil cu = ConnectionUtil.getConnectionUtil();
 
     @Override
@@ -30,12 +29,11 @@ public class AccountsRepo implements CrudInterface<Accounts> {
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                Accounts account = new Accounts(
+                return new Accounts(
                         rs.getInt(1),
                         rs.getString(2),
                         rs.getString(3),
                         rs.getString(4));
-                return account;
             }
 
         } catch (SQLException e) {
@@ -101,7 +99,6 @@ public class AccountsRepo implements CrudInterface<Accounts> {
             e.printStackTrace();
         }
 
-
         return false;
     }
 
@@ -126,7 +123,7 @@ public class AccountsRepo implements CrudInterface<Accounts> {
         return false;
     }
 
-    public Accounts getByUsername(String username) {
+    public Accounts getByUsername(String username) throws UsernameDoesNotExistException {
         try (Connection conn = cu.getConnection()) {
 
             String sql = "select * from \"Dealership\".Accounts where username = ?";
@@ -142,12 +139,12 @@ public class AccountsRepo implements CrudInterface<Accounts> {
                 );
             }
 
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (SQLException u) {
+           throw new UsernameDoesNotExistException("Account Does not exist");
         }
         return null;
     }
-    public Accounts getAccountByUsername(String username) {
+    public Accounts getAccountByUsername(String username) throws SQLException {
         try (Connection conn = cu.getConnection()) {
 
             String sql = "select * from \"Dealership\".Accounts where username = ?";
@@ -165,8 +162,6 @@ public class AccountsRepo implements CrudInterface<Accounts> {
                 );
             }
 
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
         return null;
     }
