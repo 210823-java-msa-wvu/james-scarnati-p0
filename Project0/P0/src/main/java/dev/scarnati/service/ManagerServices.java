@@ -1,8 +1,10 @@
 package dev.scarnati.service;
 
 
+import dev.scarnati.model.Accounts;
 import dev.scarnati.model.Car;
 import dev.scarnati.model.Employee;
+import dev.scarnati.repositories.AccountsRepo;
 import dev.scarnati.repositories.CarRepo;
 import dev.scarnati.repositories.CrudInterface;
 import dev.scarnati.repositories.EmployeeRepo;
@@ -13,6 +15,8 @@ public class ManagerServices {
 
     CrudInterface<Employee> employeeCrudInterface = new EmployeeRepo();
     CrudInterface<Car> carCrudInterface = new CarRepo();
+    CrudInterface<Accounts> accountsCrudInterface = new AccountsRepo();
+    AccountsRepo accountsRepo = new AccountsRepo();
 // adds a new employee to the database (hiring)
     public boolean add(String firstName, String lastName, String email, String phoneNumber, String title)  {
         Employee e = new Employee(firstName, lastName, email, phoneNumber, title);
@@ -24,6 +28,7 @@ public class ManagerServices {
         return employeeCrudInterface.delete(id);
 
     }
+
 //displays all employees in the database
     public List<Employee> getAll() {
         return this.employeeCrudInterface.getAll();
@@ -42,13 +47,20 @@ public class ManagerServices {
     }
 //changes the last name or phone number of an employee
     public boolean update(Employee employee) {
-        employeeCrudInterface.update(employee);
-        return true;
+        return employeeCrudInterface.update(employee);
+
     }
     //finds an employee by their corresponding id nummber
     public Employee getEmployeeById(Integer id){
 
         return this.employeeCrudInterface.getById(id);
+
+    }
+    public Accounts getAccountByEmail(String email){
+        return this.accountsRepo.getAccountByEmail(email);
+    }
+    public boolean deleteAccount(Integer id) {
+        return accountsCrudInterface.delete(id);
 
     }
 }

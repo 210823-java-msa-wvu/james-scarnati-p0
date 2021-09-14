@@ -166,6 +166,32 @@ public class AccountsRepo implements CrudInterface<Accounts> {
         return null;
     }
 
+    public Accounts getAccountByEmail(String email) {
+        try (Connection conn = cu.getConnection()) {
+
+            String sql = "select * from \"Dealership\".Accounts where email = ?";
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, email);
+
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return new Accounts(
+                        rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4)
+                );
+            }
+
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+
+        }
+        return null;
+    }
+
     public Accounts checkByUsernameCustomer(String username) {
 
 
@@ -256,7 +282,7 @@ public class AccountsRepo implements CrudInterface<Accounts> {
             String sql = "delete from \"Dealership\".Accounts where id = ?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, id);
-            ps.execute();
+
 
             return ps.executeUpdate() != 0;
 

@@ -1,6 +1,7 @@
 package dev.scarnati.veiws;
 
 
+import dev.scarnati.model.Accounts;
 import dev.scarnati.service.exceptions.InvalidSelectionException;
 import dev.scarnati.model.Employee;
 import dev.scarnati.service.ManagerServices;
@@ -73,11 +74,24 @@ public class SubMenuManager {
                         scanner.nextLine();
                         System.out.println("Enter Employee Id");
                         int id = scanner.nextInt();
+                        Employee a = managerServices.getEmployeeById(id);
+                        String emaile = a.getEmail();
+                        Accounts account = managerServices.getAccountByEmail(emaile);
+                        int ida = account.getId();
                         boolean fire = managerServices.delete(id);
+                        boolean delete = managerServices.deleteAccount(ida);
+                        System.out.println(delete);
                         if (fire) {
                             System.out.println("Employee was fired!");
-                        } else {
+                        }
+                            else {
                             System.out.println("Employee could not be fired!");
+                        }
+                        if (delete) {
+                            System.out.println("Employee Account was deleted!");
+                        }
+                        else{
+                            System.out.println("Employee Account was not deleted!");
                         }
                         break;
                     case 4:
