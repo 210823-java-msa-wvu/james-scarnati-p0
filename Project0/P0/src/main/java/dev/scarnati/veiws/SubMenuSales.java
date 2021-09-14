@@ -27,7 +27,11 @@ public class SubMenuSales {
             System.out.println("(0) Logout");
 
             int choice = scanner.nextInt();
-
+            try {
+                salesServices.check(choice);
+            }catch (InvalidSelectionException e){
+                System.out.println("Custom Exception Caught: Invalid input: " + choice);
+            }
                 switch (choice) {
                     case 1:
                         //updates the boolean determining the status of the
@@ -80,8 +84,8 @@ public class SubMenuSales {
                         LoginMenu.display();
                         break;
                     default:
-                        throw new InvalidSelectionException("Invalid Input!");
-                }
+                        break;
+            }
 
 
         }

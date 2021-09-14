@@ -1,6 +1,7 @@
 package dev.scarnati.repositories;
 
 import dev.scarnati.model.Car;
+import dev.scarnati.service.exceptions.InvalidSelectionException;
 import dev.scarnati.util.ConnectionUtil;
 
 import java.sql.Connection;
@@ -149,7 +150,8 @@ public class CarRepo implements CrudInterface<Car>{
             return ps2.executeUpdate() != 0;
 
         }
-        } catch (SQLException e) {
+        }catch ( SQLException e)
+        {
             e.printStackTrace();
         }
         return false;
@@ -165,8 +167,9 @@ public class CarRepo implements CrudInterface<Car>{
             ps.setInt(1, id);
 
             return ps.executeUpdate() != 0;
-
-        } catch (SQLException e) {
+        }
+      catch ( SQLException e)
+        {
             e.printStackTrace();
         }
         return false;

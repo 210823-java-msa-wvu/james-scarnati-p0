@@ -40,9 +40,9 @@ public class UserServices {
     //finds a car by the cars id from the database
     public Car getCarById(Integer id){
 
-        return this.carCrudInterface.getById(id);
+            return this.carCrudInterface.getById(id);
+        }
 
-    }
     //Creates a Customer in the Customer Table
     public boolean add(String firstName, String lastName, String email, String phoneNumber) {
         Customer c = new Customer(firstName, lastName, email, phoneNumber);
@@ -56,12 +56,8 @@ public class UserServices {
     }
 
 
-    public void InvalidSelectionLogin(Integer integer) throws InvalidSelectionException{
 
-        if(integer > 3 | integer < 0){
-            throw new InvalidSelectionException("Invalid selection!");
-        }
-}
+
 
 //Checks to see if the user can access the customer screen
     public boolean enterCustomer(String username) {
@@ -90,4 +86,12 @@ public class UserServices {
         }
         return false;
     }
-}
+    public void check(Integer choice) throws InvalidSelectionException {
+
+            if (choice < 4 && choice >= 0) {
+                return;
+            }
+                throw new InvalidSelectionException("Invalid Input: " + choice);
+            }
+        }
+

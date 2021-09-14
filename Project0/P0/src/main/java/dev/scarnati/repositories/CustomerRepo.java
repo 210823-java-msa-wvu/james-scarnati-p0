@@ -3,6 +3,7 @@ package dev.scarnati.repositories;
 import dev.scarnati.model.Accounts;
 import dev.scarnati.model.Car;
 import dev.scarnati.model.Customer;
+import dev.scarnati.service.exceptions.InvalidSelectionException;
 import dev.scarnati.util.ConnectionUtil;
 
 import java.sql.Connection;
@@ -45,7 +46,8 @@ public class CustomerRepo implements CrudInterface<Customer> {
             }
 
 
-        catch (SQLException e) {
+        catch ( SQLException e)
+        {
             e.printStackTrace();
         }
 

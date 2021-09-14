@@ -8,6 +8,7 @@ import dev.scarnati.repositories.AccountsRepo;
 import dev.scarnati.repositories.CarRepo;
 import dev.scarnati.repositories.CrudInterface;
 import dev.scarnati.repositories.EmployeeRepo;
+import dev.scarnati.service.exceptions.InvalidSelectionException;
 
 import java.util.List;
 
@@ -35,7 +36,8 @@ public class ManagerServices {
     }
 //removes a car from the database
     public boolean deleteCar(Integer id) {
-         return carCrudInterface.delete(id);
+
+        return carCrudInterface.delete(id);
 
     }
 //adds a new car to the database
@@ -50,7 +52,7 @@ public class ManagerServices {
         return employeeCrudInterface.update(employee);
 
     }
-    //finds an employee by their corresponding id nummber
+    //finds an employee by their corresponding id number
     public Employee getEmployeeById(Integer id){
 
         return this.employeeCrudInterface.getById(id);
@@ -63,4 +65,12 @@ public class ManagerServices {
         return accountsCrudInterface.delete(id);
 
     }
+    public void check(Integer choice) throws InvalidSelectionException {
+
+        if (choice < 8 && choice >= 0) {
+            return;
+        }
+        throw new InvalidSelectionException("Invalid Input: " + choice);
+    }
 }
+

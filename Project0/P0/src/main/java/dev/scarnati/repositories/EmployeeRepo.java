@@ -2,6 +2,7 @@ package dev.scarnati.repositories;
 
 
 import dev.scarnati.model.Employee;
+import dev.scarnati.service.exceptions.InvalidSelectionException;
 import dev.scarnati.util.ConnectionUtil;
 
 import java.sql.Connection;
@@ -39,7 +40,8 @@ public class EmployeeRepo implements CrudInterface<Employee> {
             return employee;
         }
 
-        } catch (SQLException e) {
+        } catch ( SQLException e)
+        {
             e.printStackTrace();
         }
 
@@ -123,7 +125,8 @@ public class EmployeeRepo implements CrudInterface<Employee> {
 
             return ps.executeUpdate() != 0;
 
-        } catch (SQLException e) {
+        }catch ( SQLException e)
+        {
             e.printStackTrace();
         }
         return false;
@@ -139,7 +142,8 @@ public class EmployeeRepo implements CrudInterface<Employee> {
             ps.setInt(1, id);
 
             return ps.executeUpdate() != 0;
-        } catch (SQLException e) {
+        }catch ( SQLException e)
+        {
             e.printStackTrace();
         }
         return false;

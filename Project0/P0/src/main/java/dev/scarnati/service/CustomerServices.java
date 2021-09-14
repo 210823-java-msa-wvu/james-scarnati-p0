@@ -5,6 +5,7 @@ import dev.scarnati.model.Customer;
 import dev.scarnati.repositories.AccountsRepo;
 import dev.scarnati.repositories.CrudInterface;
 import dev.scarnati.repositories.CustomerRepo;
+import dev.scarnati.service.exceptions.InvalidSelectionException;
 
 import java.sql.SQLException;
 
@@ -42,4 +43,12 @@ public class CustomerServices {
        return accountsCrudInterface.update(account);
 
     }
+    public void check(Integer choice) throws InvalidSelectionException {
+
+        if (choice < 5 && choice >= 0) {
+            return;
+        }
+        throw new InvalidSelectionException("Invalid Input: " + choice);
+    }
 }
+

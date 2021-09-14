@@ -25,8 +25,12 @@ public class LoginMenu {
                 System.out.println("(2) Create Account");
                 System.out.println("(3) View Cars");
                 System.out.println("(0) Exit");
-
                 int choice = scanner.nextInt();
+                try {
+                    userServices.check(choice);
+                }catch (InvalidSelectionException e){
+                    System.out.println("Custom Exception Caught: Invalid input: " + choice);
+                }
 
                 switch (choice) {
 
@@ -92,11 +96,13 @@ public class LoginMenu {
                         running = false;
                         System.exit(0);
                         break;
-
                     default:
-                        throw new InvalidSelectionException("Invalid Input!");
-
+                        break;
                 }
+
+
+
+
             }
 
         scanner.close();

@@ -32,7 +32,11 @@ public class SubMenuManager {
             System.out.println("(0) Log-out");
 
             int choice = scanner.nextInt();
-
+            try {
+                managerServices.check(choice);
+            }catch (InvalidSelectionException e){
+                System.out.println("Custom Exception Caught: Invalid input: " + choice);
+            }
                 switch (choice) {
                     case 1:
                         //bring the manager to the sales menu
@@ -163,7 +167,7 @@ public class SubMenuManager {
                         running = false;
                         LoginMenu.display();
                         break;
-                    default: throw new InvalidSelectionException("Invalid Input!");
+                    default: break;
                 }
 
         }

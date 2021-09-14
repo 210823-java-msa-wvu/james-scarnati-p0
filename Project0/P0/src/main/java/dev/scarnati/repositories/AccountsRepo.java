@@ -4,7 +4,7 @@ package dev.scarnati.repositories;
 import dev.scarnati.model.Accounts;
 
 
-
+import dev.scarnati.service.exceptions.InvalidSelectionException;
 import dev.scarnati.util.ConnectionUtil;
 
 import java.sql.*;
@@ -36,8 +36,9 @@ public class AccountsRepo implements CrudInterface<Accounts> {
                         rs.getString(4));
             }
 
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch ( SQLException e)
+        {
+            System.out.println("Invalid Selection");
         }
 
         return null;
@@ -195,7 +196,7 @@ public class AccountsRepo implements CrudInterface<Accounts> {
     public Accounts checkByUsernameCustomer(String username) {
 
 
-        Accounts C = new Accounts();
+
 
         try (Connection conn = cu.getConnection()) {
             String sql = "select a.email, c.email from \"Dealership\".Accounts a inner join \"Dealership\".Customer c on c.email = a.email where a.username = ?";
@@ -286,7 +287,8 @@ public class AccountsRepo implements CrudInterface<Accounts> {
 
             return ps.executeUpdate() != 0;
 
-        } catch (SQLException e) {
+        } catch ( SQLException e)
+        {
             e.printStackTrace();
         }
         return false;

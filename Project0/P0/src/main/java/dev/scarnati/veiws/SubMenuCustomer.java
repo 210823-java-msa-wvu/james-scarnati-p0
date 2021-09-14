@@ -29,7 +29,11 @@ public class SubMenuCustomer {
             System.out.println("0) Logout");
 
             int choice = scanner.nextInt();
-
+            try {
+                customerServices.check(choice);
+            }catch (InvalidSelectionException e){
+                System.out.println("Custom Exception Caught: Invalid input: " + choice);
+            }
             switch (choice) {
                 case 1:
                     //pulls all the cars and prints them out
@@ -91,8 +95,7 @@ public class SubMenuCustomer {
                     LoginMenu.display();
                     break;
                 default:
-                    throw new InvalidSelectionException("Invalid Input!");
-
+                    break;
             }
         }
     }

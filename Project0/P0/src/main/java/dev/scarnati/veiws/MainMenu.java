@@ -32,6 +32,11 @@ public class MainMenu {
 
             int choice = scanner.nextInt();
 
+            try {
+                userServices.check(choice);
+            }catch (InvalidSelectionException e){
+                System.out.println("Custom Exception Caught: Invalid input: " + choice);
+            }
                 switch (choice) {
                     case 1:
                         //Checks users account type to see if they can access the customer menu
@@ -63,7 +68,7 @@ public class MainMenu {
                         LoginMenu.display();
                         break;
                     default:
-                        throw new InvalidSelectionException("Invalid Input!");
+                        break;
                 }
 
 
