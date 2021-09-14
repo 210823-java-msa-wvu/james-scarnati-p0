@@ -104,7 +104,7 @@ public class SubMenuManager {
                 case 3:
                     //'fires' an employee by removing them from the
                     //database using their id number as a reference
-                    scanner.nextLine();
+
                     int id;
                     do {
                         System.out.println("Enter Employee Id: ");
@@ -149,7 +149,8 @@ public class SubMenuManager {
                         }
                         year = scanner.nextInt();
                     }while(year < 0);
-                    System.out.println("Enter Car Year: ");
+
+
 
                     scanner.nextLine();
                     System.out.println("Enter make: ");
@@ -169,10 +170,17 @@ public class SubMenuManager {
                         }
                         miles = scanner.nextInt();
                     }while(miles < 0);
+                    int price;
+                    do {
+                        System.out.println("Enter the price: ");
+                        while (!scanner.hasNextInt()) {
+                            System.out.println("That's not a number! Please enter a number: ");
+                            scanner.next();
+                        }
+                        price = scanner.nextInt();
+                    }while(price < 0);
 
 
-                    System.out.println("Enter the price: ");
-                    int price = scanner.nextInt();
 
                     boolean addCar = managerServices.addCar(year, make, model, engine, color, miles, price);
                     if (addCar) {
