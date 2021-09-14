@@ -18,14 +18,24 @@ public class LoginMenu {
 
         Scanner scanner = new Scanner(System.in);
         boolean running = true;
-
+        boolean start1 = true;
+        boolean start2 = true;
 
             while (running) {
                 System.out.println("(1) Log In");
                 System.out.println("(2) Create Account");
                 System.out.println("(3) View Cars");
                 System.out.println("(0) Exit");
-                int choice = scanner.nextInt();
+
+                int choice;
+                do {
+                    System.out.println("Enter Choice:  ");
+                    while (!scanner.hasNextInt()) {
+                        System.out.println("That's not a number! Please enter a number: ");
+                        scanner.next();
+                    }
+                    choice = scanner.nextInt();
+                }while(choice < 0);
                 try {
                     userServices.check(choice);
                 }catch (InvalidSelectionException e){
@@ -43,7 +53,7 @@ public class LoginMenu {
                         System.out.println("Enter Password: ");
                         String password = scanner.nextLine();
                         boolean signInResponse = userServices.login(username, password);
-                        //Checks username and password to see if they match the dtatbase
+                        //Checks username and password to see if they match the database
                         if (signInResponse) {
                             System.out.println("Login Successful");
                             MainMenu.display();
@@ -59,8 +69,26 @@ public class LoginMenu {
                         scanner.nextLine();
                         System.out.println("Enter First Name: ");
                         String firstName = scanner.nextLine();
+                        while(start1){
+                        if (firstName.matches(".*\\d.*")) {
+                            System.out.println("first name contains digits \n Please Re-enter first name: ");
+                            firstName = scanner.nextLine();
+                        } else {
+                            start1 = false;
+
+                        }
+                    }
                         System.out.println("Enter Last Name: ");
                         String lastName = scanner.nextLine();
+                        while(start2) {
+                            if (lastName.matches(".*\\d.*")) {
+                                System.out.println("last name contains digits \n Please Re-enter last name: ");
+                                lastName = scanner.nextLine();
+                            } else {
+                                start2 = false;
+
+                            }
+                        }
                         System.out.println("Enter e-mail: ");
                         String email = scanner.nextLine();
                         System.out.println("Enter Phone Number: ");

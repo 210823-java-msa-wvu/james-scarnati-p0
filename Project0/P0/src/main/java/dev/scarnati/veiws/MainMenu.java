@@ -30,7 +30,15 @@ public class MainMenu {
             System.out.println("3) Management");
             System.out.println("0) Logout");
 
-            int choice = scanner.nextInt();
+            int choice;
+            do {
+                System.out.println("Enter Choice:  ");
+                while (!scanner.hasNextInt()) {
+                    System.out.println("That's not a number! Please enter a number: ");
+                    scanner.next();
+                }
+                choice = scanner.nextInt();
+            }while(choice < 0);
 
             try {
                 userServices.check(choice);

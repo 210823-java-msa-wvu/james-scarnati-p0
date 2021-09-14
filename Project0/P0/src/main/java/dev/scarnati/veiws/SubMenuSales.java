@@ -26,7 +26,15 @@ public class SubMenuSales {
             System.out.println("(4)Managers menu (Management Only!)");
             System.out.println("(0) Logout");
 
-            int choice = scanner.nextInt();
+            int choice;
+            do {
+                System.out.println("Enter Choice:  ");
+                while (!scanner.hasNextInt()) {
+                    System.out.println("That's not a number! Please enter a number: ");
+                    scanner.next();
+                }
+                choice = scanner.nextInt();
+            }while(choice < 0);
             try {
                 salesServices.check(choice);
             }catch (InvalidSelectionException e){
@@ -36,8 +44,16 @@ public class SubMenuSales {
                     case 1:
                         //updates the boolean determining the status of the
                         // car as sold or not
-                        System.out.println("Enter Car Id:  ");
-                        int id = scanner.nextInt();
+
+                        int id;
+                        do {
+                            System.out.println("Enter Car Id:  ");
+                            while (!scanner.hasNextInt()) {
+                                System.out.println("That's not a number! Please enter a number: ");
+                                scanner.next();
+                            }
+                            id = scanner.nextInt();
+                        }while(id < 0);
                         Car car = userServices.getCarById(id);
                         System.out.println("is this car being sold (true or false)?");
                         boolean sell = scanner.nextBoolean();
@@ -55,8 +71,15 @@ public class SubMenuSales {
                     case 3:
                         //changes the price of a car by the
                         // associated id of the car
-                        System.out.println("Enter Car Id: ");
-                        int id2 = scanner.nextInt();
+                        int id2;
+                        do {
+                            System.out.println("Enter Car Id:  ");
+                            while (!scanner.hasNextInt()) {
+                                System.out.println("That's not a number! Please enter a number: ");
+                                scanner.next();
+                            }
+                            id2 = scanner.nextInt();
+                        }while(id2 < 0);
                         Car car2 = userServices.getCarById(id2);
                         System.out.println("Enter New Price: ");
                         int price = scanner.nextInt();

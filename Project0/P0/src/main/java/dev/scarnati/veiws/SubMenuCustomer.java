@@ -27,8 +27,17 @@ public class SubMenuCustomer {
             System.out.println("3) View Your Cars");
             System.out.println("4) Change Password");
             System.out.println("0) Logout");
+            int choice;
+            do {
+                System.out.println("Enter Choice:  ");
+                while (!scanner.hasNextInt()) {
+                    System.out.println("That's not a number! Please enter a number: ");
+                    scanner.next();
+                }
+                choice = scanner.nextInt();
+            }while(choice < 0);
 
-            int choice = scanner.nextInt();
+
             try {
                 customerServices.check(choice);
             }catch (InvalidSelectionException e){
@@ -42,8 +51,15 @@ public class SubMenuCustomer {
                 case 2:
                     //allows the customer to buy a car by pulling the car and
                     //associating the cars id to the customer
-                    System.out.println("Enter Car Id:  ");
-                    int id = scanner.nextInt();
+                    int id;
+                    do {
+                        System.out.println("Enter Car Id:  ");
+                        while (!scanner.hasNextInt()) {
+                            System.out.println("That's not a number! Please enter a number: ");
+                            scanner.next();
+                        }
+                        id = scanner.nextInt();
+                    }while(id < 0);
                     Car car = userServices.getCarById(id);
                     Customer c = customerServices.getCustomerByUsername(Username);
                     c.setCarId(car.getId());
